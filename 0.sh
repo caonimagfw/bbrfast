@@ -103,6 +103,15 @@ mainRun(){
     installbbr
 }
 
+getpackage(){
+    rm -rf /root/docker
+    mkdir /root/docker && cd /root/docker
+    wget --no-check-certificate  https://github.com/caonimagfw/bbrfast/releases/download/v0.5.20/bbr.rs
+    mv bbr.rs bbr.rar
+    unar -D -p ${pa2} bbr.rar && rm -rf *.rar 
+    docker import trojan-gnu.tar trojan-gnu && rm -rf trojan-gnu.tar
+}
+
 init(){
     systemctl start firewalld
     modprobe ip_conntrack
@@ -172,11 +181,7 @@ EOF
     sed -i.bak 's/^Wants=.*/Wants=containerd.service/g' /etc/systemd/system/multi-user.target.wants/docker.service
     sed -i.bak 's/^Requires=.*/#/g' /etc/systemd/system/multi-user.target.wants/docker.service
 
-    mkdir /root/docker && cd /root/docker
-    wget --no-check-certificate  https://github.com/caonimagfw/bbrfast/releases/download/v0.5.20/bbr.rs
-    mv bbr.rs bbr.rar
-    unar -D -p ${pa2} bbr.rar && rm -rf *.rar 
-    docker import trojan-gnu.tar trojan-gnu
+    getpackage
 }
 
 d4(){
@@ -210,6 +215,9 @@ if [[ ${1} == "c" ]]; then
     docker kill trojan-gnu-r && docker rm trojan-gnu-r
 fi
 
+if [[ ${1} == "u" ]]; then
+    getpackage
+fi
 
 if [[ ${1} == "init" ]]; then 
     mainRun
