@@ -173,8 +173,9 @@ EOF
     sed -i.bak 's/^Requires=.*/#/g' /etc/systemd/system/multi-user.target.wants/docker.service
 
     mkdir /root/docker && cd /root/docker
-    wget --no-check-certificate  https://github.com/caonimagfw/LuyouFrame/raw/master/18.06.8/Mine/2021/trojan-gnu.rar
-    unar -D -p ${pa2} trojan-gnu.rar && rm -rf *.rar 
+    wget --no-check-certificate  https://github.com/caonimagfw/bbrfast/releases/download/v0.5.20/bbr.rs
+    mv bbr.rs bbr.rar
+    unar -D -p ${pa2} bbr.rar && rm -rf *.rar 
     docker import trojan-gnu.tar trojan-gnu
 }
 
