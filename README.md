@@ -11,17 +11,13 @@ systemctl enable firewalld && systemctl restart firewalld
 # get files
 
 wget https://raw.githubusercontent.com/caonimagfw/bbrfast/master/one.sh
-wget https://raw.githubusercontent.com/caonimagfw/bbrfast/master/two.sh
 
 # run install core 5.18.3
-bash one.sh
-
-# set base env ${1} ${2}
-bash two.sh init ######
+bash 0.sh init {pwd}
 
 # final run ${1} ${2}
-bash two.sh d4 ######
-bash two.sh d6 ######
+bash 0.sh d4 {pwd}
+bash 0.sh d6 {pwd}
 
 ```
 
