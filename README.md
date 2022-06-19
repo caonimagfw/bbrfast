@@ -39,4 +39,9 @@ yum install -y /root/5.18/kernel-ml-5.18.3-1.el7.elrepo.x86_64.rpm
 grub2-set-default 'CentOS Linux (5.18.3-1.el7.elrepo.x86_64) 7 (Core)'
 grub2-editenv list
 
+grubby --info=ALL
+grubby --set-default 1
+grubby --default-index
+
+
 ```
