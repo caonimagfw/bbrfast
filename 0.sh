@@ -173,7 +173,7 @@ EOF
         https://download.docker.com/linux/centos/docker-ce.repo
     yum makecache fast
     yum list docker-ce --showduplicates | sort -r
-    yum -y install docker-ce-20.10.16 docker-ce-cli-20.10.16 containerd.io
+    yum -y install docker-ce-20.10.17 docker-ce-cli-20.10.17 containerd.io
     systemctl enable docker.socket --now
     systemctl enable docker && systemctl restart docker  
 
