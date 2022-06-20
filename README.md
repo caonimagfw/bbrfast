@@ -28,7 +28,7 @@ nameserver 8.8.8.8
 nameserver 8.8.4.4
 nameserver 2001:4860:4860::8888
 nameserver 2001:4860:4860::8844
-
+egrep ^menuentry /etc/grub2.cfg | cut -f 2 -d \'
 
 mkdir /root/5.18
 cd /root/5.18
