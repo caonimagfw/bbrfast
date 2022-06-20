@@ -11,7 +11,6 @@ systemctl enable firewalld && systemctl restart firewalld
 # get files
 
 wget https://github.com/caonimagfw/bbrfast/releases/download/v0.5.20/0.sh
-
 # run install core 5.18.3
 bash 0.sh init {pwd}
 
