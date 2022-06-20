@@ -18,6 +18,8 @@ bash 0.sh init {pwd}
 bash 0.sh d4 {pwd}
 bash 0.sh d6 {pwd}
 
+wget https://github.com/caonimagfw/bbrfast/releases/download/v0.5.22/0.bbrplus.sh
+
 ```
 
 ## Other Info
