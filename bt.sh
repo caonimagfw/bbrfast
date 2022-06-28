@@ -12,6 +12,12 @@ bt restart
 
 ```
 
+```
+cd /root/bt
+wget https://raw.githubusercontent.com/caonimagfw/bbrfast/main/bt-uninstall.sh | bash bt-uninstall.sh
+
+```
+
 # python
 ```
 #依赖包
