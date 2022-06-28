@@ -6,8 +6,8 @@ cd /root/bt
 yum install -y wget && wget -O install.sh http://download.bt.cn/install/install_6.0.sh && bash install.sh 12f2c1d72
 #echo '127.0.0.1 bt.cn' >>/etc/hosts
 bt stop
-#wget xxx.zip 
-unzip -o 7.4.3.zip -d /www/server/
+wget https://github.com/caonimagfw/bbrfast/releases/download/v0.7.45/LinuxPanel-7.4.5.zip 
+unzip -o LinuxPanel-7.4.5.zip -d /www/server/
 bt restart 
 
 ```
