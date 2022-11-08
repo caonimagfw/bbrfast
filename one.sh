@@ -66,7 +66,7 @@ net.ipv4.icmp_echo_ignore_all=1
 
 startbbrV2(){
 	: > /etc/sysctl.conf
-	echo "net.core.default_qdisc=fq_pie" >>/etc/sysctl.d/99-sysctl.conf
+	echo "net.core.default_qdisc=cake" >>/etc/sysctl.d/99-sysctl.conf
   	echo "net.ipv4.tcp_congestion_control=bbr" >>/etc/sysctl.d/99-sysctl.conf
 	sysctl --system
 	sysctl -p
