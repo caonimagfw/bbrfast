@@ -29,14 +29,14 @@ net.core.wmem_default = 8388608
 net.core.wmem_max = 67108864
 net.ipv4.ip_local_port_range = 10240 65000
 net.ipv4.route.gc_timeout = 100
-net.ipv4.tcp_fastopen = 3
+net.ipv4.tcp_fastopen = 0
 net.ipv4.tcp_fin_timeout = 30
-net.ipv4.tcp_keepalive_time=60
+net.ipv4.tcp_keepalive_time=300
 net.ipv4.tcp_keepalive_intvl=5
 net.ipv4.tcp_keepalive_probes=3
 net.ipv4.tcp_max_orphans = 3276800
 net.ipv4.tcp_max_syn_backlog = 65536
-net.ipv4.tcp_max_tw_buckets = 60000
+net.ipv4.tcp_max_tw_buckets = 1000
 net.ipv4.tcp_mem = 94500000 915000000 927000000
 net.ipv4.tcp_mtu_probing = 1
 net.ipv4.tcp_rmem = 8192 87380 67108864
@@ -70,7 +70,7 @@ startbbrV2(){
   	echo "net.ipv4.tcp_congestion_control=bbr" >>/etc/sysctl.d/99-sysctl.conf
 	sysctl --system
 	sysctl -p
-	echo -e "${Info}BBR V2 and fq_pie 启动成功！"
+	echo -e "${Info}BBR V2 and cake 启动成功！"
 }
 
 installbbr(){
