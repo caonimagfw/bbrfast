@@ -20,15 +20,6 @@ fi
 public_file=/www/server/panel/install/public.sh
 publicFileMd5=$(md5sum ${public_file} 2>/dev/null|awk '{print $1}')
 md5check="acfc18417ee58c64ff99d186f855e3e1"
-if [ "${publicFileMd5}" != "${md5check}"  ]; then
-	wget -O Tpublic.sh http://download.bt.cn/install/public.sh -T 20;
-	publicFileMd5=$(md5sum Tpublic.sh 2>/dev/null|awk '{print $1}')
-	if [ "${publicFileMd5}" == "${md5check}"  ]; then
-		\cp -rpa Tpublic.sh $public_file
-	fi
-	rm -f Tpublic.sh
-fi
-. $public_file
 
 Centos8Check=$(cat /etc/redhat-release | grep ' 8.' | grep -iE 'centos|Red Hat')
 if [ "${Centos8Check}" ];then
@@ -46,12 +37,11 @@ fi
 download_Url="https://github.com/caonimagfw/bbrfast/raw/main/bt/centos7"
 download_Bin="https://github.com/caonimagfw/bbrfast/releases/download/v0.9.0"
 setup_path=/www
-version='7.4.5'
+version='7.9.5'
 armCheck=$(uname -m|grep arm)
-if [ "${armCheck}" ];then
-	version='7.7.0'
-fi
-wget -T 5 -O /tmp/panel.zip $download_Bin/LinuxPanel-${version}.zip
+
+wget -T 5 -O /tmp/panel.zip https://github.com/wei/baota/releases/download/7.9.5/LinuxPanel-7.9.5.zip
+# $download_Bin/LinuxPanel-${version}.zip
 dsize=$(du -b /tmp/panel.zip|awk '{print $1}')
 if [ $dsize -lt 10240 ];then
 	echo "获取更新包失败，请稍后更新或联系宝塔运维"
