@@ -200,8 +200,8 @@ Set_Centos_Repo(){
 	fi
 }
 get_node_url(){
-	download_Url="https://git.io/bt_install_"
-	download_Bin="https://git.io/bt_install_"
+	download_Url="https://github.com/caonimagfw/bbrfast/raw/main/bt/centos7"
+	download_Bin="https://github.com/caonimagfw/bbrfast/releases/download/v0.9.0"
 	echo "Download Url: $download_Url";
 	echo "Download Bin: $download_Bin";
 	echo '---------------------------------------------';
