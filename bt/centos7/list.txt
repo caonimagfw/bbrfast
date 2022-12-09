@@ -1,0 +1,7 @@
+wget https://download.bt.cn/install/pyenv/activate.panel
+wget https://download.bt.cn/install/pyenv/pip.txt
+wget https://download.bt.cn/install/pyenv/pip-3.7.8.txt
+wget https://download.bt.cn/install/pip_select.sh
+wget https://download.bt.cn/install/pyenv/pyenv-el7-x64.tar.gz
+wget https://download.bt.cn/src/Python-3.7.8.tar.xz
+
