@@ -1,21 +1,34 @@
 # install bt 
-
-
 ```
 mkdir /root/bt
 cd /root/bt
-yum install -y wget && wget -O install.sh https://github.com/caonimagfw/bbrfast/raw/main/bt/bt-install.sh && bash install.sh 12f2c1d72
+
+yum install -y wget && wget -O install.sh http://download.bt.cn/install/install_6.0.sh && bash install.sh 12f2c1d72
+bt stop
+
+
+wget https://github.com/caonimagfw/bbrfast/releases/download/v0.9.0/LinuxPanel-7.7.0.zip
+unzip LinuxPanel-7.7.0.zip -d .
+cd panel && bash update.sh
+cd .. && rm -rf panel
+bt stop && echo '127.0.0.1 bt.cn' >>/etc/hosts
+
+bt restart 
+
+
+# remove bind
+sed -i "s|bind_user == 'True'|bind_user == 'XXXX'|" /www/server/panel/BTPanel/static/js/index.js
+#
+mv /www/server/panel/data/bind.pl /www/server/panel/data/bind.bak
+
+
+
 
 cd /root/bt
 wget https://raw.githubusercontent.com/caonimagfw/bbrfast/main/bt-uninstall.sh | bash bt-uninstall.sh
 
 
-curl https://raw.githubusercontent.com/caonimagfw/bbrfast/main/bt/bt-update.sh | bash
-
-
 ```
-
-
 
 
 

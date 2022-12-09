@@ -624,9 +624,9 @@ Install_Bt(){
 	chmod -R +x ${setup_path}/server/panel/script
 	ln -sf /etc/init.d/bt /usr/bin/bt
 	echo "${panelPort}" > ${setup_path}/server/panel/data/port.pl
-	wget -O /etc/init.d/bt ${download_Url}/install/src/bt7.init -T 10
-	wget -O /www/server/panel/init.sh ${download_Url}/install/src/bt7.init -T 10
-	wget -O /www/server/panel/data/softList.conf ${download_Url}/install/conf/softList.conf
+	# wget -O /etc/init.d/bt ${download_Url}/install/src/bt7.init -T 10
+	# wget -O /www/server/panel/init.sh ${download_Url}/install/src/bt7.init -T 10
+	# wget -O /www/server/panel/data/softList.conf ${download_Url}/install/conf/softList.conf
 }
 Set_Bt_Panel(){
 	Run_User="www"
@@ -670,9 +670,6 @@ Set_Bt_Panel(){
 		lsattr python3.7 python
 		Red_Error "ERROR: The BT-Panel service startup failed." "ERROR: 宝塔启动失败"
 	fi
-	wget -O oneav_bt.sh http://download.bt.cn/install/plugin/oneav/install.sh > /dev/null 2>&1
-	bash oneav_bt.sh install > /www/server/panel/install//btinstall.log 2>&1
-	rm -f oneav_bt.sh
 }
 Set_Firewall(){
 	sshPort=$(cat /etc/ssh/sshd_config | grep 'Port '|awk '{print $2}')
