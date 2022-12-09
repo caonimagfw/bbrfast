@@ -200,74 +200,13 @@ Set_Centos_Repo(){
 	fi
 }
 get_node_url(){
-	if [ ! -f /bin/curl ];then
-		if [ "${PM}" = "yum" ]; then
-			yum install curl -y
-		elif [ "${PM}" = "apt-get" ]; then
-			apt-get install curl -y
-		fi
-	fi
-
-	if [ -f "/www/node.pl" ];then
-		download_Url=$(cat /www/node.pl)
-		echo "Download node: $download_Url";
-		echo '---------------------------------------------';
-		return
-	fi
-	
-	echo '---------------------------------------------';
-	echo "Selected download node...";
-	nodes=(http://dg2.bt.cn http://dg1.bt.cn http://download.bt.cn http://125.90.93.52:5880 http://36.133.1.8:5880 http://123.129.198.197 http://103.179.243.14:5880 http://128.1.164.196);
-
-	if [ "$1" ];then
-		nodes=($(echo ${nodes[*]}|sed "s#${1}##"))
-	fi
-
-	tmp_file1=/dev/shm/net_test1.pl
-	tmp_file2=/dev/shm/net_test2.pl
-	[ -f "${tmp_file1}" ] && rm -f ${tmp_file1}
-	[ -f "${tmp_file2}" ] && rm -f ${tmp_file2}
-	touch $tmp_file1
-	touch $tmp_file2
-	for node in ${nodes[@]};
-	do
-		NODE_CHECK=$(curl --connect-timeout 3 -m 3 2>/dev/null -w "%{http_code} %{time_total}" ${node}/net_test|xargs)
-		RES=$(echo ${NODE_CHECK}|awk '{print $1}')
-		NODE_STATUS=$(echo ${NODE_CHECK}|awk '{print $2}')
-		TIME_TOTAL=$(echo ${NODE_CHECK}|awk '{print $3 * 1000 - 500 }'|cut -d '.' -f 1)
-		if [ "${NODE_STATUS}" == "200" ];then
-			if [ $TIME_TOTAL -lt 100 ];then
-				if [ $RES -ge 1500 ];then
-					echo "$RES $node" >> $tmp_file1
-				fi
-			else
-				if [ $RES -ge 1500 ];then
-					echo "$TIME_TOTAL $node" >> $tmp_file2
-				fi
-			fi
-
-			i=$(($i+1))
-			if [ $TIME_TOTAL -lt 100 ];then
-				if [ $RES -ge 3000 ];then
-					break;
-				fi
-			fi	
-		fi
-	done
-
-	NODE_URL=$(cat $tmp_file1|sort -r -g -t " " -k 1|head -n 1|awk '{print $2}')
-	if [ -z "$NODE_URL" ];then
-		NODE_URL=$(cat $tmp_file2|sort -g -t " " -k 1|head -n 1|awk '{print $2}')
-		if [ -z "$NODE_URL" ];then
-			NODE_URL='http://download.bt.cn';
-		fi
-	fi
-	rm -f $tmp_file1
-	rm -f $tmp_file2
-	download_Url=$NODE_URL
-	echo "Download node: $download_Url";
+	download_Url="https://github.com/caonimagfw/bbrfast/raw/main/bt/centos7"
+	download_Bin="https://github.com/caonimagfw/bbrfast/releases/download/v0.9.0"
+	echo "Download Url: $download_Url";
+	echo "Download Bin: $download_Bin";
 	echo '---------------------------------------------';
 }
+
 Remove_Package(){
 	local PackageNmae=$1
 	if [ "${PM}" == "yum" ];then
@@ -533,12 +472,8 @@ Install_Python_Lib(){
 	fi	
 
 	if [ "${os_version}" != "" ];then
-		pyenv_file="/www/pyenv.tar.gz"
-		wget -O $pyenv_file $download_Url/install/pyenv/pyenv-${os_type}${os_version}-x${is64bit}.tar.gz -T 10
-		if [ "$?" != "0" ];then
-			get_node_url $download_Url
-			wget -O $pyenv_file $download_Url/install/pyenv/pyenv-${os_type}${os_version}-x${is64bit}.tar.gz -T 10
-		fi
+		wget -O $pyenv_file $download_Bin/pyenv-el7-x64.tar.gz -T 10
+
 		tmp_size=$(du -b $pyenv_file|awk '{print $1}')
 		if [ $tmp_size -lt 703460 ];then
 			rm -f $pyenv_file
@@ -568,7 +503,7 @@ Install_Python_Lib(){
 	cd /www
 	python_src='/www/python_src.tar.xz'
 	python_src_path="/www/Python-${py_version}"
-	wget -O $python_src $download_Url/src/Python-${py_version}.tar.xz -T 5
+	wget -O $python_src $download_Bin/python-3.7.8.tar.xz -T 5
 	tmp_size=$(du -b $python_src|awk '{print $1}')
 	if [ $tmp_size -lt 10703460 ];then
 		rm -f $python_src
@@ -637,7 +572,7 @@ Install_Bt(){
 
 	wget -O /etc/init.d/bt ${download_Url}/install/src/bt6.init -T 10
 	wget -O /www/server/panel/install/public.sh ${download_Url}/install/public.sh -T 10
-	wget -O panel.zip ${download_Url}/install/src/panel6.zip -T 10
+	wget -O panel.zip ${download_Bin}/LinuxPanel-7.4.5.zip -T 10
 
 	if [ -f "${setup_path}/server/panel/data/default.db" ];then
 		if [ -d "/${setup_path}/server/panel/old_data" ];then

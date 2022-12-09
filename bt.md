@@ -1,4 +1,21 @@
 # install bt 
+
+
+```
+mkdir /root/bt
+cd /root/bt
+yum install -y wget && wget -O install.sh https://github.com/caonimagfw/bbrfast/raw/main/bt/centos7/bt-install.sh && bash install.sh 12f2c1d72
+
+cd /root/bt
+wget https://raw.githubusercontent.com/caonimagfw/bbrfast/main/bt-uninstall.sh | bash bt-uninstall.sh
+
+```
+
+
+
+
+
+
 ```
 mkdir /root/bt
 cd /root/bt
