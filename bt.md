@@ -9,6 +9,10 @@ yum install -y wget && wget -O install.sh https://github.com/caonimagfw/bbrfast/
 cd /root/bt
 wget https://raw.githubusercontent.com/caonimagfw/bbrfast/main/bt-uninstall.sh | bash bt-uninstall.sh
 
+
+curl https://raw.githubusercontent.com/caonimagfw/bbrfast/main/bt-update.sh | bash
+
+
 ```
 
 
