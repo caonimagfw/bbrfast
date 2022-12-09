@@ -472,7 +472,7 @@ Install_Python_Lib(){
 	fi	
 
 	if [ "${os_version}" != "" ];then
-		wget -O $pyenv_file $download_Bin/pyenv-el7-x64.tar.gz -T 10
+		wget -O $pyenv_file ${download_Bin}/pyenv-el7-x64.tar.gz
 
 		tmp_size=$(du -b $pyenv_file|awk '{print $1}')
 		if [ $tmp_size -lt 703460 ];then
