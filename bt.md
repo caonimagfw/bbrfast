@@ -10,7 +10,7 @@ cd /root/bt
 wget https://raw.githubusercontent.com/caonimagfw/bbrfast/main/bt-uninstall.sh | bash bt-uninstall.sh
 
 
-curl https://raw.githubusercontent.com/caonimagfw/bbrfast/main/bt-update.sh | bash
+curl https://raw.githubusercontent.com/caonimagfw/bbrfast/main/bt/bt-update.sh | bash
 
 
 ```
